@@ -7,7 +7,7 @@ let db = null;
 
 async function getDb() {
   if (db) return db;
-  const SQL = await initSqlJs({locateFile: file => 'https://sql.js.org/dist/' + file});
+  const SQL = await initSqlJs({locateFile: file => path.join(__dirname, 'public', file)});
   if (fs.existsSync(DB_PATH)) {
     const buf = fs.readFileSync(DB_PATH);
     db = new SQL.Database(buf);
